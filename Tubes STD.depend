@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1514140574 source:d:\materi kuliah\tugas\std\tubes std\main.cpp
+	<iostream>
+
+1522551436 source:d:\materi kuliah\tugas\std\tubes std\list_child.cpp
+	"list_child.h"
+
+1522551103 d:\materi kuliah\tugas\std\tubes std\list_child.h
+	<iostream>
+
+1522551769 source:d:\materi kuliah\tugas\std\tubes std\list_parent.cpp
+	"list_parent.h"
+
+1522551797 d:\materi kuliah\tugas\std\tubes std\list_parent.h
+	<iostream>
+
+1522551141 source:d:\materi kuliah\tugas\std\tubes std\list_relasi.cpp
+	"list_relasi.h"
+
+1522551147 d:\materi kuliah\tugas\std\tubes std\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
