@@ -50,10 +50,14 @@ void insertAfter(address_child &Prec, address_child P) {
 void insertLast(List_child &L, address_child P) {
     address_child Q;
     Q=first(L);
-    while (next(Q)!=NULL) {
-        Q=next(Q);
+    if (first(L)==NULL) {
+        insertFirst(L,P);
+    } else {
+        while (next(Q)!=NULL) {
+            Q=next(Q);
+        }
+        next(Q)=P;
     }
-    next(Q)=P;
 }
 
 void deleteLast(List_child &L, address_child &P) {
