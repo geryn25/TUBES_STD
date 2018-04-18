@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cstdlib>
+#include <conio.h>
 
 
 
@@ -36,7 +37,7 @@ int main()
         cin>>menu;
         runMenu(menu);
         cout<<endl;
-        system("CLS");
+
     }
     return 0;
 
@@ -58,36 +59,93 @@ void displayMenu () {
 
 void runMenu (int menu) {
     address_parent A,B;
-    infotype_parent X,Y,Z;
+    infotype_parent W,Y,Z;
+    address_child S;
+    address_parent Q;
+    address_relasi I;
+    char X[100];
+    bool t;
+    char g,o;
     switch (menu) {
         case 1 :
             cout<<" Judul Buku :";
-            cin>>X;
-            A=alokasi_parent(X);
+            cin>>W.judulBuku;
+            cout<<" Penulis Buku :";
+            cin>>W.penulis;
+            cout<<"Tahun Terbit : ";
+            cin>>W.tahunTerbit;
+            A=alokasi_parent(W);
             insertLast(P,A);
+            t=true;
+            while (t==true) {
+                cout<<" Genre Buku :" <<endl
+                    <<" 1. Horror"<<endl
+                    <<" 2. Science"<<endl
+                    <<" 3. Roman"<<endl
+                    <<" Pilih angka : ";
+                cin>>g;
 
+
+                if (g=='1') {
+                    S=findElm(C,"Horror");
+                    Q=findElm(P,W);
+                    I=alokasi(Q,S);
+                    if (first(R)==NULL) {
+                        insertFirst(R,I);
+                    } else {
+                        insertLast(R,I);
+                    }
+                }
+                if (g=='2') {
+                    S=findElm(C,"Science");
+                    Q=findElm(P,W);
+                    I=alokasi(Q,S);
+                    if (first(R)==NULL) {
+                        insertFirst(R,I);
+                    } else {
+                        insertLast(R,I);
+                    }
+                }
+                cout<<"masukkan genre lagi? (Y/N) ";
+                cin>>o;
+                if (o=='y' || o=='Y') {
+                    t=true;
+                } else {
+                    t=false;
+                }
+            }
             break;
 
         case 2 :
-            cout<<"judul Buku yang dihapus : "<<endl;
-            cin>>Z;
+            cout<<"judul Buku yang dihapus : ";
+            cin>>Z.judulBuku;
             A=findElm(P,Z);
             if (A!=NULL) {
-
+                    deleteAfter(P,prev(A),B);
             } else {
                 cout<<"buku tidak ditemukan"<<endl;
             }
+
+            printInfo(P);
             break;
         case 3 :
             cout<<"judul Buku yang diedit : "<<endl;
-            cin>>Y;
+            cin>>Y.judulBuku;
             A=findElm(P,Y);
             if (A!=NULL) {
                 cout<<" Judul Buku : ";
-                cin>>Y;
+                cin>>Y.judulBuku;
+                info(A).judulBuku=Y.judulBuku;
 
-                A=alokasi_parent(Y);
             }
+            break;
+        case 4 :
+            printInfo(R);
+            break;
+        case 5 :
+            cout<<"Judul Buku yang dicari : ";
+            cin>>Y.judulBuku;
+            printParent(R,Y);
             break;
     }
 }

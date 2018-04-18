@@ -53,3 +53,35 @@
 1523950538 source:c:\users\asus\documents\github repositories\tubes_std\list_relasi.cpp
 	"list_relasi.h"
 
+1524062834 source:c:\users\gery\documents\github\tubes_std\list_child.cpp
+	"list_child.h"
+
+1524064041 c:\users\gery\documents\github\tubes_std\list_child.h
+	<iostream>
+
+1524079782 source:c:\users\gery\documents\github\tubes_std\list_parent.cpp
+	"list_parent.h"
+
+1524076687 c:\users\gery\documents\github\tubes_std\list_parent.h
+	<iostream>
+
+1524078770 source:c:\users\gery\documents\github\tubes_std\list_relasi.cpp
+	"list_relasi.h"
+
+1524078670 c:\users\gery\documents\github\tubes_std\list_relasi.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
+
+1524079614 source:c:\users\gery\documents\github\tubes_std\main.cpp
+	<iostream>
+	<stdio.h>
+	<string.h>
+	<cstdlib>
+	<conio.h>
+	"list_child.h"
+	"list_relasi.h"
+	"list_parent.h"
+	<conio.h>
+

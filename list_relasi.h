@@ -40,6 +40,7 @@ address_relasi alokasi( address_parent P, address_child C);
 void dealokasi(address_relasi &P);
 address_relasi findElm(List_relasi L, address_parent P, address_child C);
 void printInfo(List_relasi L);
+void printParent(List_relasi L, infotype_parent P);
 
 
 #endif // LIST_RELASI_H_INCLUDED

@@ -10,7 +10,11 @@ using namespace std;
 #define prev(P) P->prev
 #define last(L) L.last
 
-typedef string infotype_parent;
+struct infotype_parent {
+    string judulBuku;
+    string penulis;
+    string tahunTerbit;
+};
 typedef struct elmlist_parent *address_parent;
 
 struct elmlist_parent {

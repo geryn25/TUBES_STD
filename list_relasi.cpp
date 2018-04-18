@@ -22,24 +22,25 @@ address_relasi dealokasi_relasi(address_relasi &P){
 void printInfo(List_relasi L) {
     address_relasi P = first(L);
     while(P !=NULL) {
-        cout<<info(parent(P))<<"->"<<info(child(P))<<endl;
+        cout<<"Judul Buku   : "<<info(parent(P)).judulBuku<<endl
+            <<"Penulis Buku : "<<info(parent(P)).penulis<<endl
+            <<"Tahun Terbit : "<<info(parent(P)).tahunTerbit<<endl
+            <<"Genre Buku   : "<<info(child(P))<<endl;
+        cout<<endl;
         P = next(P);
     }
 }
 
 void insertFirst(List_relasi &L, address_relasi P) {
-    next(P) = first(L);
     first(L) = P;
 }
 
 void insertLast(List_relasi &L, address_relasi P) {
     address_relasi Q = first(L);
-    while(next(Q)!= first(L)) {
+    while(next(Q)!= NULL) {
         Q = next(Q);
     }
-    next(Q) = P;
-    Q = NULL;
-    P = NULL;
+    next(Q)=P;
 }
 
 void insertAfter(address_relasi &Prec, address_relasi P) {
@@ -79,4 +80,19 @@ address_relasi findElm(List_relasi L, address_parent P, address_child C) {
         Q = next(Q);
     }
     return NULL;
+}
+
+void printParent(List_relasi L, infotype_parent P) {
+    address_relasi Q= first(L);
+        while (Q!=NULL) {
+            if (info(parent(Q)).judulBuku==P.judulBuku) {
+                cout<<"Judul Buku   : "<<info(parent(Q)).judulBuku<<endl
+                    <<"Penulis Buku : "<<info(parent(Q)).penulis<<endl
+                    <<"Tahun Terbit : "<<info(parent(Q)).tahunTerbit<<endl
+                    <<"Genre Buku   : "<<info(child(Q))<<endl;
+                cout<<endl;
+            }
+            Q=next(Q);
+        }
+
 }
