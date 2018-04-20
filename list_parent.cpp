@@ -14,9 +14,7 @@ address_parent alokasi_parent(infotype_parent x) {
 
     address_parent P;
     P = new elmlist_parent;
-    info(P).judulBuku = x.judulBuku;
-    info(P).penulis = x.penulis;
-    info(P).tahunTerbit = x.tahunTerbit;
+    info(P)= x;
     next(P) = NULL;
     prev(P)=NULL;
     return P;
@@ -51,7 +49,7 @@ void printInfo(List_parent L) {
     address_parent P = first(L);
     if(first(L)!=NULL) {
         do {
-            cout<<info(P).judulBuku<<endl;
+            cout<<info(P)<<endl;
             P = next(P);
         } while((P)!=first(L));
     }
@@ -67,7 +65,7 @@ address_parent findElm(List_parent L, infotype_parent x) {
     address_parent P = first(L);
     if (first(L)!=NULL) {
         do {
-            if(info(P).judulBuku == x.judulBuku) {
+            if(info(P)== x) {
                 return P;
             }
             P = next(P);
@@ -151,3 +149,4 @@ void deleteAfter(List_parent &L,address_parent Prec,address_parent &P) {
         }
     }
 }
+

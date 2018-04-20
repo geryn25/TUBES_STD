@@ -59,22 +59,22 @@
 1524064041 c:\users\gery\documents\github\tubes_std\list_child.h
 	<iostream>
 
-1524079782 source:c:\users\gery\documents\github\tubes_std\list_parent.cpp
+1524255322 source:c:\users\gery\documents\github\tubes_std\list_parent.cpp
 	"list_parent.h"
 
-1524076687 c:\users\gery\documents\github\tubes_std\list_parent.h
+1524254261 c:\users\gery\documents\github\tubes_std\list_parent.h
 	<iostream>
 
-1524078770 source:c:\users\gery\documents\github\tubes_std\list_relasi.cpp
+1524260770 source:c:\users\gery\documents\github\tubes_std\list_relasi.cpp
 	"list_relasi.h"
 
-1524078670 c:\users\gery\documents\github\tubes_std\list_relasi.h
+1524260245 c:\users\gery\documents\github\tubes_std\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
 	<iostream>
 
-1524079614 source:c:\users\gery\documents\github\tubes_std\main.cpp
+1524260644 source:c:\users\gery\documents\github\tubes_std\main.cpp
 	<iostream>
 	<stdio.h>
 	<string.h>

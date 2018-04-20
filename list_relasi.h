@@ -33,6 +33,9 @@ void insertAfter(address_relasi Prec, address_relasi P);
 void deleteFirst(List_relasi &L, address_relasi &P);
 void deleteLast(List_relasi &L, address_relasi &P);
 void deleteAfter(address_relasi Prec, address_relasi &P);
+void printgenre(List_relasi L);
+address_relasi findBefore (List_relasi L, address_relasi x);
+
 
 
 /** PERLU MODIFIKASI */

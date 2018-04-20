@@ -14,39 +14,8 @@ using namespace std;
 #include "list_relasi.h"
 #include "list_parent.h"
 #include <conio.h>
-    List_child C;
-    List_parent P;
-    List_relasi R;
-void displayMenu();
-void runMenu(int menu);
-int main()
-{
+#include "fungsiNon_linkedlist.h"
 
-    createList_parent(P);
-    createList_child(C);
-    createList_relasi(R);
-    address_child Q=alokasi("Horror");
-    insertLast(C,Q);
-    Q=alokasi("Science");
-    insertLast(C,Q);
-    Q=alokasi("Roman");
-    insertLast(C,Q);
-    int menu=-1;
-    while (menu!=0) {
-        displayMenu();
-        cin>>menu;
-        runMenu(menu);
-        cout<<endl;
-        if (menu!=0) {
-            cout<<"press any button to back to menu ... ";
-            getch();
-            system("CLS");
-        }
-
-    }
-    return 0;
-
-}
 
 void displayMenu () {
     cout<<"DAFTAR BUKU PERPUSTAKAAN"<<endl;
@@ -56,7 +25,6 @@ void displayMenu () {
     cout<<"3.Edit Buku"<<endl;
     cout<<"4.View List Buku Berdasarkan Genre"<<endl;
     cout<<"5.Search Buku"<<endl;
-    cout<<"6.Tambah Genre Buku"<<endl;
     cout<<"0.Exit"<<endl;
     cout<<"---------------------"<<endl;
     cout<<"choose Menu : ";
@@ -93,7 +61,7 @@ void runMenu (int menu) {
                     if (g=='1' || g=='2' || g=='3') {
                         PD=false;
                     } else {
-                        cout<<" inputan salah"<<endl;
+                        cout<<"inputan salah"<<endl;
                     }
                 }
 
@@ -152,15 +120,16 @@ void runMenu (int menu) {
             break;
 
         case 2 :
-//            cout<<"judul Buku yang dihapus : ";
-//            cin>>Z;
-//            if (A!=NULL) {
-//
-//                    deleteAfter(P,prev(A),B);
-//            } else {
-//                cout<<"buku tidak ditemukan"<<endl;
-//            }
-            cout<<"under maintenance"<<endl;
+            cout<<"judul Buku yang dihapus : ";
+            cin>>Z;
+            A=findElm(P,Z);
+            if (A!=NULL) {
+                    deleteAfter(P,prev(A),B);
+            } else {
+                cout<<"buku tidak ditemukan"<<endl;
+            }
+
+            printInfo(P);
             break;
         case 3 :
             cout<<"judul Buku yang diedit : "<<endl;
