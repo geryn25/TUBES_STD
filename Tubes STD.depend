@@ -65,16 +65,28 @@
 1524254261 c:\users\gery\documents\github\tubes_std\list_parent.h
 	<iostream>
 
-1524260770 source:c:\users\gery\documents\github\tubes_std\list_relasi.cpp
+1524606667 source:c:\users\gery\documents\github\tubes_std\list_relasi.cpp
 	"list_relasi.h"
 
-1524260245 c:\users\gery\documents\github\tubes_std\list_relasi.h
+1524605053 c:\users\gery\documents\github\tubes_std\list_relasi.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"
 	<iostream>
 
-1524260644 source:c:\users\gery\documents\github\tubes_std\main.cpp
+1524607193 source:c:\users\gery\documents\github\tubes_std\main.cpp
+	<iostream>
+	<stdio.h>
+	<string.h>
+	<cstdlib>
+	<conio.h>
+	"list_child.h"
+	"list_relasi.h"
+	"list_parent.h"
+	"function.h"
+	<conio.h>
+
+1524607085 source:c:\users\gery\documents\github\tubes_std\function.cpp
 	<iostream>
 	<stdio.h>
 	<string.h>
@@ -84,4 +96,10 @@
 	"list_relasi.h"
 	"list_parent.h"
 	<conio.h>
+
+1524606834 c:\users\gery\documents\github\tubes_std\function.h
+	"list_relasi.h"
+	"list_child.h"
+	"list_parent.h"
+	<iostream>
 

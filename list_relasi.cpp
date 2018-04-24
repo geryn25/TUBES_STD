@@ -63,8 +63,10 @@ void deleteLast(List_relasi &L, address_relasi &P){
     next(Q) = NULL;
 }
 
-void deleteAfter(address_relasi Prec, address_relasi &P){
+void deleteAfter(List_relasi &L,address_relasi Prec, address_relasi &P){
+    P = next(Prec);
     next(Prec) = next(P);
+    next(P) = NULL;
 
 }
 
@@ -79,72 +81,4 @@ address_relasi findElm(List_relasi L, address_parent P, address_child C) {
     return NULL;
 }
 
-void printParent(List_relasi L, infotype_parent P) {
-    address_relasi Q= first(L);
-    int i=0;
-        while (Q!=NULL) {
-            if (info(parent(Q))==P) {
-                if (i==0) {
-                    cout<<"Judul Buku   : "<<info(parent(Q))<<endl
-                        <<"Genre Buku   : "<<info(child(Q));
-                } else {
-                    cout<<", "<<info(child(Q));
-                }
-            }
-            i++;
 
-            Q=next(Q);
-        }
-        cout<<endl;
-
-}
-
-void printgenre(List_relasi L) {
-    address_relasi P=first(L);
-    int i=0;
-    cout<<"Horror :"<<endl;
-    while (P!=NULL) {
-
-        if (info(child(P))=="Horror") {
-            i++;
-    cout<<i<<". "<<info(parent(P))<<endl;
-        }
-        P=next(P);
-    }
-    i=0;
-    P=first(L);
-    cout<<endl;
-    cout<<"Science :"<<endl;
-    while (P!=NULL) {
-
-        if (info(child(P))=="Science") {
-            i++;
-            cout<<i<<". "<<info(parent(P))<<endl;
-        }
-        P=next(P);
-    }
-    i=0;
-    P=first(L);
-    cout<<endl;
-    cout<<"roman :"<<endl;
-    while (P!=NULL) {
-
-        if (info(child(P))=="Roman") {
-            i++;
-            cout<<i<<". "<<info(parent(P))<<endl;
-        }
-        P=next(P);
-    }
-
-}
-
-address_relasi findBefore (List_relasi L, address_relasi x){
-    address_relasi Q=first(L);
-    if (x!=NULL && x!=first(L)) {
-        while (next(Q)!=x) {
-            Q=next(Q);
-        }
-    return Q;
-    }
-    return NULL;
-}

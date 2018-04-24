@@ -13,15 +13,16 @@ using namespace std;
 #include "list_child.h"
 #include "list_relasi.h"
 #include "list_parent.h"
+#include "function.h"
 #include <conio.h>
     List_child C;
     List_parent P;
     List_relasi R;
 void displayMenu();
-void runMenu(int menu);
+void runMenu(char menu);
 int main()
 {
-
+    system("color 3F");
     createList_parent(P);
     createList_child(C);
     createList_relasi(R);
@@ -31,8 +32,8 @@ int main()
     insertLast(C,Q);
     Q=alokasi("Roman");
     insertLast(C,Q);
-    int menu=-1;
-    while (menu!=0) {
+    char menu='-1';
+    while (menu!='0') {
         displayMenu();
         cin>>menu;
         runMenu(menu);
@@ -63,185 +64,27 @@ void displayMenu () {
 
 }
 
-void runMenu (int menu) {
-    address_parent A,B;
-    infotype_parent W,Y,Z;
-    address_child S;
-    address_parent Q,DP;
-    address_relasi I,DPP;
-    char X[100];
-    bool t,PD;
-    char g,o;
+void runMenu (char menu) {
     switch (menu) {
-        case 1 :
-            cout<<" Judul Buku :";
-            cin>>W;
-            DP=findElm(P,W);
-            if (DP==NULL) {
-            A=alokasi_parent(W);
-            insertLast(P,A);
-            t=true;
-            while (t==true) {
-                cout<<" Genre Buku :" <<endl
-                    <<" 1. Horror"<<endl
-                    <<" 2. Science"<<endl
-                    <<" 3. Roman"<<endl;
-                PD=true;
-                while (PD==true) {
-                    cout<<" Pilih angka : ";
-                    cin>>g;
-                    if (g=='1' || g=='2' || g=='3') {
-                        PD=false;
-                    } else {
-                        cout<<" inputan salah"<<endl;
-                    }
-                }
-
-
-                if (g=='1') {
-                    S=findElm(C,"Horror");
-                    Q=findElm(P,W);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='2') {
-                    S=findElm(C,"Science");
-                    Q=findElm(P,W);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='3') {
-                    S=findElm(C,"Roman");
-                    Q=findElm(P,W);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-
-                cout<<"masukkan genre lagi? (Y/N) ";
-                cin>>o;
-                if (o=='y' || o=='Y') {
-                    t=true;
-                } else {
-                    t=false;
-                }
-            }
-            } else {
-                cout<<"buku sudah ada"<<endl;
-            }
+        case '1' :
+            inputdata(P,R,C);
             break;
-
-        case 2 :
-//            cout<<"judul Buku yang dihapus : ";
-//            cin>>Z;
-//            if (A!=NULL) {
-//
-//                    deleteAfter(P,prev(A),B);
-//            } else {
-//                cout<<"buku tidak ditemukan"<<endl;
-//            }
-            cout<<"under maintenance"<<endl;
+        case '2' :
+            hapusdata(P,C,R);
             break;
-        case 3 :
-            cout<<"judul Buku yang diedit : "<<endl;
-            cin>>Y;
-            A=findElm(P,Y);
-            if (A!=NULL) {
-                cout<<" Judul Buku diganti menjadi : ";
-                cin>>Y;
-                info(A)=Y;
-
-            }
+        case '3' :
+            editbuku(P,C,R);
             break;
-        case 4 :
+        case '4' :
             printgenre(R);
             break;
-        case 5 :
-            cout<<"Judul Buku yang dicari : ";
-            cin>>Y;
-            printParent(R,Y);
+        case '5' :
+            caribuku(P,C,R);
             break;
-        case 6 :
-            cout<<"judul buku yang genre-nya akan ditambahkan :";
-            cin>>Y;
-            Q=findElm(P,Y);
-            if (Q!=NULL) {
-                cout<<" Genre Buku :" <<endl
-                    <<" 1. Horror"<<endl
-                    <<" 2. Science"<<endl
-                    <<" 3. Roman"<<endl;
-                PD=true;
-                while (PD==true) {
-                    cout<<" Pilih angka : ";
-                    cin>>g;
-                    if (g=='1' || g=='2' || g=='3') {
-                        PD=false;
-                    } else {
-                        cout<<"inputan salah"<<endl;
-                    }
-                }
-
-
-                if (g=='1') {
-                    S=findElm(C,"Horror");
-                    Q=findElm(P,Y);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='2') {
-                    S=findElm(C,"Science");
-                    Q=findElm(P,Y);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='3') {
-                    S=findElm(C,"Roman");
-                    Q=findElm(P,Y);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-            }
+        case '6' :
+            tambahgenre(P,C,R);
+            break;
+        default :
             break;
     }
 }
