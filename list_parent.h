@@ -11,6 +11,7 @@ using namespace std;
 #define last(L) L.last
 
 typedef string infotype_parent;
+
 typedef struct elmlist_parent *address_parent;
 
 struct elmlist_parent {
@@ -33,6 +34,7 @@ void insertLast(List_parent &L, address_parent P);
 void deleteFirst(List_parent &L, address_parent &P);
 void deleteLast(List_parent &L, address_parent &P);
 void deleteAfter(List_parent &L, address_parent Prec, address_parent &P);
+bool duplicate (List_parent L, infotype_parent x);
 
 
 /** PERLU MODIFIKASI */

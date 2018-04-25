@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <cstdlib>
+#include <conio.h>
 
 
 
@@ -12,15 +13,16 @@ using namespace std;
 #include "list_child.h"
 #include "list_relasi.h"
 #include "list_parent.h"
+#include "function.h"
 #include <conio.h>
     List_child C;
     List_parent P;
     List_relasi R;
 void displayMenu();
-void runMenu(int menu);
+void runMenu(char menu);
 int main()
 {
-
+    system("color 3F");
     createList_parent(P);
     createList_child(C);
     createList_relasi(R);
@@ -30,13 +32,18 @@ int main()
     insertLast(C,Q);
     Q=alokasi("Roman");
     insertLast(C,Q);
-    int menu=-1;
-    while (menu!=0) {
+    char menu='-1';
+    while (menu!='0') {
         displayMenu();
         cin>>menu;
         runMenu(menu);
         cout<<endl;
-        system("CLS");
+        if (menu!=0) {
+            cout<<"press any button to back to menu ... ";
+            getch();
+            system("CLS");
+        }
+
     }
     return 0;
 
@@ -48,46 +55,36 @@ void displayMenu () {
     cout<<"1.Masukkan Judul Buku"<<endl;
     cout<<"2.Hapus Buku"<<endl;
     cout<<"3.Edit Buku"<<endl;
-    cout<<"4.View List Buku"<<endl;
+    cout<<"4.View List Buku Berdasarkan Genre"<<endl;
     cout<<"5.Search Buku"<<endl;
+    cout<<"6.Tambah Genre Buku"<<endl;
     cout<<"0.Exit"<<endl;
     cout<<"---------------------"<<endl;
     cout<<"choose Menu : ";
 
 }
 
-void runMenu (int menu) {
-    address_parent A,B;
-    infotype_parent X,Y,Z;
+void runMenu (char menu) {
     switch (menu) {
-        case 1 :
-            cout<<" Judul Buku :";
-            cin>>X;
-            A=alokasi_parent(X);
-            insertLast(P,A);
-
+        case '1' :
+            inputdata(P,R,C);
             break;
-
-        case 2 :
-            cout<<"judul Buku yang dihapus : "<<endl;
-            cin>>Z;
-            A=findElm(P,Z);
-            if (A!=NULL) {
-
-            } else {
-                cout<<"buku tidak ditemukan"<<endl;
-            }
+        case '2' :
+            hapusdata(P,C,R);
             break;
-        case 3 :
-            cout<<"judul Buku yang diedit : "<<endl;
-            cin>>Y;
-            A=findElm(P,Y);
-            if (A!=NULL) {
-                cout<<" Judul Buku : ";
-                cin>>Y;
-
-                A=alokasi_parent(Y);
-            }
+        case '3' :
+            editbuku(P,C,R);
+            break;
+        case '4' :
+            printgenre(R);
+            break;
+        case '5' :
+            caribuku(P,C,R);
+            break;
+        case '6' :
+            tambahgenre(P,C,R);
+            break;
+        default :
             break;
     }
 }

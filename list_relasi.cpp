@@ -22,24 +22,23 @@ address_relasi dealokasi_relasi(address_relasi &P){
 void printInfo(List_relasi L) {
     address_relasi P = first(L);
     while(P !=NULL) {
-        cout<<info(parent(P))<<"->"<<info(child(P))<<endl;
+        cout<<"Judul Buku   : "<<info(parent(P))<<endl
+            <<"Genre Buku   : "<<info(child(P))<<endl;
+        cout<<endl;
         P = next(P);
     }
 }
 
 void insertFirst(List_relasi &L, address_relasi P) {
-    next(P) = first(L);
     first(L) = P;
 }
 
 void insertLast(List_relasi &L, address_relasi P) {
     address_relasi Q = first(L);
-    while(next(Q)!= first(L)) {
+    while(next(Q)!= NULL) {
         Q = next(Q);
     }
-    next(Q) = P;
-    Q = NULL;
-    P = NULL;
+    next(Q)=P;
 }
 
 void insertAfter(address_relasi &Prec, address_relasi P) {
@@ -50,7 +49,6 @@ void insertAfter(address_relasi &Prec, address_relasi P) {
 void deleteFirst(List_relasi &L, address_relasi &P){
     if(first(L)!= NULL){
         P=first(L);
-        next(P) = NULL;
         first(L) = next(P);
         next(P) = NULL;
     }
@@ -65,8 +63,10 @@ void deleteLast(List_relasi &L, address_relasi &P){
     next(Q) = NULL;
 }
 
-void deleteAfter(address_relasi Prec, address_relasi &P){
+void deleteAfter(List_relasi &L,address_relasi Prec, address_relasi &P){
+    P = next(Prec);
     next(Prec) = next(P);
+    next(P) = NULL;
 
 }
 
@@ -79,4 +79,11 @@ address_relasi findElm(List_relasi L, address_parent P, address_child C) {
         Q = next(Q);
     }
     return NULL;
+}
+
+
+void dealokasi(address_relasi &P) {
+    parent(P)=NULL;
+    child(P)=NULL;
+    next(P)=NULL;
 }
