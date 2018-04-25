@@ -82,3 +82,8 @@ address_relasi findElm(List_relasi L, address_parent P, address_child C) {
 }
 
 
+void dealokasi(address_relasi &P) {
+    parent(P)=NULL;
+    child(P)=NULL;
+    next(P)=NULL;
+}

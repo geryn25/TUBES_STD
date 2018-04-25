@@ -23,7 +23,7 @@ using namespace std;
     char X[100];
     bool t,PD;
     char g,o;
-    int qwe;
+    int qwe,po,po1,po2;
 void inputdata (List_parent &P, List_relasi &R, List_child &C) {
             cout<<" Judul Buku :";
             cin>>W;
@@ -54,6 +54,7 @@ void inputdata (List_parent &P, List_relasi &R, List_child &C) {
                     S=findElm(C,"Horror");
                     Q=findElm(P,W);
                     I=alokasi(Q,S);
+
                     if (first(R)==NULL) {
                         insertFirst(R,I);
                     } else {
@@ -88,8 +89,8 @@ void inputdata (List_parent &P, List_relasi &R, List_child &C) {
                             insertLast(R,I);
                         }
                     }
+
                 }
-                qwe++;
                 if (qwe<3) {
                 cout<<"masukkan genre lagi? (Y/N) ";
                 cin>>o;
