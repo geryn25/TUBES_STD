@@ -134,7 +134,6 @@ void deleteGenre (List_child &P, List_relasi &R) {
             } else {
                 Z=first(R);
                 while (Z!=NULL) {
-                    cout<<"YY";
                     if (child(first(R))==Q){
                         deleteFirst(R,S);
                         Z=first(R);
