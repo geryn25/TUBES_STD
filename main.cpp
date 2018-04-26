@@ -22,7 +22,7 @@ void displayMenu();
 void runMenu(int menu);
 int main()
 {
-    system("color 4f");
+    system("color 3f");
     int menu=-1;
     while (menu!=0) {
         displayMenu();
@@ -55,13 +55,14 @@ void displayMenu () {
     cout<<"7.Hubungkan buku dan genre"<<endl;
     cout<<"8.Lihat List Relasi"<<endl;
     cout<<"9.Delete Relasi"<<endl;
-    cout<<"=========LAINNYA========"<<endl;
+    cout<<"=========LAINNYA========="<<endl;
     cout<<"10.Cari Buku By Judul Buku"<<endl;
     cout<<"11.Cari Buku by Genre"<<endl;
     cout<<"12.Lihat Semua Buku Berdasarkan Genre"<<endl;
     cout<<"13.Check Konensi Buku dan Genre"<<endl;
+    cout<<"=========================="<<endl;
     cout<<"0.Exit"<<endl;
-
+    cout<<"=========================="<<endl;
     cout<<"choose Menu : ";
 
 }
