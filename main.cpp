@@ -56,10 +56,10 @@ void displayMenu () {
     cout<<"8.Lihat List Relasi"<<endl;
     cout<<"9.Delete Relasi"<<endl;
     cout<<"=========LAINNYA========"<<endl;
-    cout<<"10.Cari Buku"<<endl;
-    cout<<"0.Exit"<<endl;
-    cout<<"0.Exit"<<endl;
-    cout<<"0.Exit"<<endl;
+    cout<<"10.Cari Buku By Judul Buku"<<endl;
+    cout<<"11.Cari Buku by Genre"<<endl;
+    cout<<"12.Lihat Semua Buku Berdasarkan Genre"<<endl;
+    cout<<"13.Check Konensi Buku dan Genre"<<endl;
     cout<<"0.Exit"<<endl;
 
     cout<<"choose Menu : ";
@@ -129,6 +129,10 @@ void runMenu (int menu) {
             cout<<endl;
             listbygenre(P,C,R);
             break;
+        case 13 :
+            cout<< " Check Relasi "<<endl;
+            cout<<endl;
+            checkRelation(C,P,R);
         default :
             break;
     }

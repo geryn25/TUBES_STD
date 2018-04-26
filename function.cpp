@@ -212,10 +212,9 @@ void deleteRelasi(List_parent P,List_child C,List_relasi &R) {
     cin.ignore();
     getline(cin,Y.JudulBuku);
     cout<<"Masukkan genre Buku : ";
-    cin.ignore();
     getline(cin,G.Genre);
     address_child Q=findElmName(C,G);
-    address_parent W=findElm(P,Y);
+    address_parent W=findElmName(P,Y);
     if (Q!=NULL && W!=NULL) {
         address_relasi K=findElm(R,W,Q);
         if (K!=NULL) {
@@ -299,5 +298,25 @@ void listbygenre (List_parent W,List_child C,List_relasi R){
         cout<<"Banyak Buku di Genre "<<info(P).Genre<<" : "<<i<<" Buah"<<endl;
         cout<<endl;
         P=next(P);
+    }
+}
+
+void checkRelation (List_child C, List_parent P, List_relasi R) {
+    infotype_parent Y;
+    infotype_child G;
+    address_relasi B;
+    cout<<"Masukkan Judul Buku : ";
+    cin.ignore();
+    getline(cin,Y.JudulBuku);
+    cout<<"Masukkan genre Buku : ";
+    getline(cin,G.Genre);
+    address_child Q=findElmName(C,G);
+    address_parent W=findElmName(P,Y);
+    B=findElm(R,W,Q);
+
+    if (B==NULL) {
+        cout<<"Tidak ada Relasi"<<endl;
+    } else {
+        cout<<"terhubung"<<endl;
     }
 }
