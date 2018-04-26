@@ -10,7 +10,10 @@ using namespace std;
 #define prev(P) P->prev
 #define last(L) L.last
 
-typedef string infotype_parent;
+struct infotype_parent{
+    string JudulBuku;
+    int ID;
+};
 
 typedef struct elmlist_parent *address_parent;
 
@@ -41,6 +44,7 @@ bool duplicate (List_parent L, infotype_parent x);
 address_parent alokasi_parent(infotype_parent x);
 void dealokasi(address_parent &P);
 address_parent findElm(List_parent L, infotype_parent x);
+address_parent findElmName(List_parent L, infotype_parent x);
 void printInfo(List_parent L);
 
 

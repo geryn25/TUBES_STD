@@ -4,6 +4,7 @@
 #include <string.h>
 #include <cstdlib>
 #include <conio.h>
+#include <string>
 
 
 
@@ -24,160 +25,233 @@ using namespace std;
     bool t,PD;
     char g,o;
     int qwe,po,po1,po2;
-void inputdata (List_parent &P, List_relasi &R, List_child &C) {
-            cout<<" Judul Buku :";
-            cin>>W;
-            DP=findElm(P,W);
-            if (DP==NULL) {
-            A=alokasi_parent(W);
-            insertLast(P,A);
-            t=true;
-            qwe=0;
-            while (t==true && qwe<3) {
-                cout<<" Genre Buku :" <<endl
-                    <<" 1. Horror"<<endl
-                    <<" 2. Science"<<endl
-                    <<" 3. Roman"<<endl;
-                PD=true;
-                while (PD==true) {
-                    cout<<" Pilih angka : ";
-                    cin>>g;
-                    if (g=='1' || g=='2' || g=='3') {
-                        PD=false;
-                    } else {
-                        cout<<" inputan salah"<<endl;
-                    }
-                }
+void inputdataParent (List_parent &P) {
+    infotype_parent X;
+    cout<<"Masukkan ID    :  ";
+    cin>>X.ID;
+    cout<<"Masukkan Judul Buku  :  ";
+    cin.ignore();
+    getline(cin,X.JudulBuku);
+    address_parent W=findElmName(P,X);
+    address_parent R=alokasi_parent(X);
+    address_parent Q=findElm(P,X);
+    if (Q==NULL && W==NULL) {
+        insertLast(P,R);
+    } else {
+        cout<<"ID atau Nama duplikat"<<endl;
+    }
 
+}
 
-                if (g=='1') {
-                    S=findElm(C,"Horror");
-                    Q=findElm(P,W);
-                    I=alokasi(Q,S);
+void inputdataChild (List_child &C) {
+    infotype_child X;
+    cout<<"Masukkan ID    :  ";
+    cin>>X.ID;
+    cout<<"Masukkan Genre Buku  :  ";
+    cin.ignore();
+    getline(cin,X.Genre);
+    address_child R=alokasi(X);
+    address_child Q=findElm(C,X);
+    address_child W=findElmName(C,X);
+    if (Q==NULL && W==NULL) {
+        insertLast(C,R);
+    } else {
+        cout<<"ID duplikat atau Nama duplikat"<<endl;
+    }
 
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='2') {
-                    S=findElm(C,"Science");
-                    Q=findElm(P,W);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='3') {
-                    S=findElm(C,"Roman");
-                    Q=findElm(P,W);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
+}
 
-                }
-                if (qwe<3) {
-                cout<<"masukkan genre lagi? (Y/N) ";
-                cin>>o;
-                    if (o=='y' || o=='Y') {
-                        t=true;
-                    } else {
-                        t=false;
-                    }
-                }
-
+void deleteBuku (List_parent &P, List_relasi &R) {
+    infotype_parent x;
+    address_parent A;
+    address_relasi S,W1;
+    cout<<"Nama Buku yang dihapus : ";
+    cin.ignore();
+    getline(cin,x.JudulBuku);
+    address_parent Q=findElmName(P,x);
+    if (Q!=NULL) {
+            address_relasi W=first(R);
+            while (W!=NULL && info(parent(W)).JudulBuku!=info(Q).JudulBuku) {
+                W=next(W);
             }
+            if (W==NULL) {
+                deleteAfter(P,prev(Q),A);
+                dealokasi(A);
             } else {
-                cout<<"buku sudah ada"<<endl;
+                W=first(R);
+
+                while (W!=NULL) {
+                    cout<<"YY";
+                    if (parent(first(R))==Q){
+                        deleteFirst(R,S);
+                        W=first(R);
+                        dealokasi(S);
+                    }
+                    else if (parent(next(W))==Q) {
+                        deleteAfter(R,W,S);
+                        dealokasi(S);
+                    }
+                    else {
+                        W=next(W);
+                    }
+                }
+                deleteAfter(P,prev(Q),A);
+                dealokasi(A);
+
+
             }
+    } else {
+        cout<<"Buku tidak DITEMUKAN"<<endl;
+    }
+
+
+}
+void deleteGenre (List_child &P, List_relasi &R) {
+    infotype_child x;
+    address_child A,B;
+    address_relasi Z,S;
+    cout<<"ID buku yang dihapus : ";
+    cin.ignore();
+    getline(cin,x.Genre);
+    address_child Q=findElmName(P,x);
+    if (Q!=NULL) {
+            address_relasi W=first(R);
+            while (W!=NULL && info(child(W)).Genre!=info(Q).Genre) {
+                W=next(W);
+            }
+            if (W==NULL) {
+                address_child S=first(P);
+                if (Q=first(P)) {
+                    deleteFirst(P,B);
+                    dealokasi(B);
+                }else {
+                    while (next(S)!=Q) {
+                        S=next(S);
+                    }
+                    deleteAfter(P,S,B);
+                    dealokasi(B);
+                }
+            } else {
+                Z=first(R);
+                while (Z!=NULL) {
+                    cout<<"YY";
+                    if (child(first(R))==Q){
+                        deleteFirst(R,S);
+                        Z=first(R);
+                        dealokasi(S);
+                    }
+                    else if (child(next(Z))==Q) {
+                        deleteAfter(R,Z,S);
+                        dealokasi(S);
+                    }
+                    else {
+                        Z=next(Z);
+                    }
+                }
+                address_child S=first(P);
+                if (Q=first(P)) {
+                    deleteFirst(P,B);
+                    dealokasi(B);
+                }else {
+                    while (next(S)!=Q) {
+                        S=next(S);
+                    }
+                    deleteAfter(P,S,B);
+                    dealokasi(B);
+                }
+
+            }
+
+
+    } else {
+        cout<<"Genre tidak DITEMUKAN"<<endl;
+    }
+
+
 }
 
-void hapusdata(List_parent &P,List_child C, List_relasi &R) {
-            cout<<"judul buku yang dihapus : ";
-            cin>>Z;
-            A=findElm(P,Z);
-            S=findElm(C,"Horror");
-            DPP=findElm(R,A,S);
-            if (DPP!=NULL) {
-                if (DPP=first(R)) {
-                    deleteFirst(R,I);
-                } else {
-                    PP=first(R);
-                    while (next(PP)!=DPP) {
-                        PP=next(PP);
-                    }
-                    deleteAfter(R,PP,I);
-
-                }
+void tambahRelasi (List_relasi &R, List_child &C,List_parent &P) {
+    infotype_child W;
+    infotype_parent X;
+    address_parent Q;
+    address_child E;
+    address_relasi S,T;
+    cout<<"Judul Buku yang direlasikan : ";
+    cin.ignore();
+    getline(cin,X.JudulBuku);
+    Q=findElmName(P,X);
+    cout<<"Genre Buku yang direlasikan : ";
+    getline(cin,W.Genre);
+    E=findElmName(C,W);
+    if (E!=NULL && Q!=NULL) {
+        T=findElm(R,Q,E);
+        S=alokasi(Q,E);
+        if (T==NULL) {
+            if (first(R)==NULL) {
+                insertFirst(R,S);
+            } else {
+                insertLast(R,S);
             }
-            S=findElm(C,"Science");
-            DPP=findElm(R,A,S);
-            if (DPP!=NULL) {
-                if (DPP=first(R)) {
-                    deleteFirst(R,I);
-                } else {
-                    PP=first(R);
-                    while (next(PP)!=DPP) {
-                        PP=next(PP);
-                    }
-                    deleteAfter(R,PP,I);
-
-                }
-            }
-            S=findElm(C,"Roman");
-            DPP=findElm(R,A,S);
-            if (DPP!=NULL) {
-                if (DPP=first(R)) {
-                    deleteFirst(R,I);
-                } else {
-                    PP=first(R);
-                    while (next(PP)!=DPP) {
-                        PP=next(PP);
-                    }
-                    deleteAfter(R,PP,I);
-
-                }
-            }
-            deleteAfter(P,prev(A),Q);
+        } else {
+            cout<<endl;
+            cout<<"==============="<<endl;
+            cout<<"Relasi Duplikasi"<<endl;
+            cout<<"================"<<endl;
+        }
+    } else {
+        cout<<endl;
+        cout<<"salah satu node tidak ditemukan"<<endl;
+    }
 }
 
-void editbuku (List_parent &P, List_child &C, List_relasi &R) {
-            cout<<"judul Buku yang diedit : "<<endl;
-            cin>>Y;
-            A=findElm(P,Y);
-            if (A!=NULL) {
-                cout<<" Judul Buku diganti menjadi : ";
-                cin>>Y;
-                info(A)=Y;
-
+void deleteRelasi(List_parent P,List_child C,List_relasi &R) {
+    infotype_parent Y;
+    infotype_child G;
+    address_relasi B;
+    cout<<"Masukkan Judul Buku : ";
+    cin.ignore();
+    getline(cin,Y.JudulBuku);
+    cout<<"Masukkan genre Buku : ";
+    cin.ignore();
+    getline(cin,G.Genre);
+    address_child Q=findElmName(C,G);
+    address_parent W=findElm(P,Y);
+    if (Q!=NULL && W!=NULL) {
+        address_relasi K=findElm(R,W,Q);
+        if (K!=NULL) {
+            address_relasi O=first(R);
+            if (K==first(R)) {
+                deleteFirst(R,B);
+                dealokasi(B);
+            } else {
+                while (next(O)!=K) {
+                    O=next(O);
+                }
+                deleteAfter(R,O,B);
+                dealokasi(B);
             }
+        } else {
+            cout<<"tidak ada relasi"<<endl;
+        }
+    } else {
+        cout<<"salah satu atau kedua node tidak ditemukan"<<endl;
+    }
 }
 
-void printParent(List_relasi L, infotype_parent P) {
-    address_relasi Q= first(L);
+void caribuku (List_parent P,List_child C, List_relasi R) {
+            infotype_parent X;
+            cout<<"Judul Buku yang dicari : ";
+            cin.ignore();
+            getline(cin,X.JudulBuku);
+            address_relasi Q= first(R);
     int i=0;
         while (Q!=NULL) {
-            if (info(parent(Q))==P) {
+            if (info(parent(Q)).JudulBuku==X.JudulBuku) {
                 if (i==0) {
-                    cout<<"Judul Buku   : "<<info(parent(Q))<<endl
-                        <<"Genre Buku   : "<<info(child(Q));
+                    cout<<"Judul Buku   : "<<info(parent(Q)).JudulBuku<<endl
+                        <<"Genre Buku   : "<<info(child(Q)).Genre;
                 } else {
-                    cout<<", "<<info(child(Q));
+                    cout<<", "<<info(child(Q)).Genre;
                 }
             }
             i++;
@@ -185,113 +259,45 @@ void printParent(List_relasi L, infotype_parent P) {
             Q=next(Q);
         }
     cout<<endl;
-
 }
-
-void printgenre(List_relasi L) {
-    address_relasi P=first(L);
-    int i=0;
-    cout<<"Horror :"<<endl;
-    while (P!=NULL) {
-
-        if (info(child(P))=="Horror") {
-            i++;
-    cout<<i<<". "<<info(parent(P))<<endl;
-        }
-        P=next(P);
-    }
-    i=0;
-    P=first(L);
-    cout<<endl;
-    cout<<"Science :"<<endl;
-    while (P!=NULL) {
-
-        if (info(child(P))=="Science") {
-            i++;
-            cout<<i<<". "<<info(parent(P))<<endl;
-        }
-        P=next(P);
-    }
-    i=0;
-    P=first(L);
-    cout<<endl;
-    cout<<"roman :"<<endl;
-    while (P!=NULL) {
-
-        if (info(child(P))=="Roman") {
-            i++;
-            cout<<i<<". "<<info(parent(P))<<endl;
-        }
-        P=next(P);
-    }
-
-}
-
-void tambahgenre (List_parent &P, List_child &C, List_relasi &R) {
-            cout<<"judul buku yang genre-nya akan ditambahkan :";
-            cin>>Y;
-            Q=findElm(P,Y);
-            if (Q!=NULL) {
-                cout<<" Genre Buku :" <<endl
-                    <<" 1. Horror"<<endl
-                    <<" 2. Science"<<endl
-                    <<" 3. Roman"<<endl;
-                PD=true;
-                while (PD==true) {
-                    cout<<" Pilih angka : ";
-                    cin>>g;
-                    if (g=='1' || g=='2' || g=='3') {
-                        PD=false;
-                    } else {
-                        cout<<"inputan salah"<<endl;
-                    }
+void caribuku2 (List_parent P,List_child C, List_relasi R) {
+            infotype_child X;
+            cout<<"Genre yang Dicari : ";
+            cin.ignore();
+            getline(cin,X.Genre);
+            address_relasi Q= first(R);
+            cout<<"List Buku di Genre "<<X.Genre<<endl;
+            int i=0;
+            while (Q!=NULL) {
+                if (X.Genre==info(child(Q)).Genre) {
+                    i++;
+                    cout<<i<<". "<<info(parent(Q)).JudulBuku<<endl;
                 }
 
-
-                if (g=='1') {
-                    S=findElm(C,"Horror");
-                    Q=findElm(P,Y);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='2') {
-                    S=findElm(C,"Science");
-                    Q=findElm(P,Y);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
-                if (g=='3') {
-                    S=findElm(C,"Roman");
-                    Q=findElm(P,Y);
-                    I=alokasi(Q,S);
-                    if (first(R)==NULL) {
-                        insertFirst(R,I);
-                    } else {
-                        DPP=findElm(R,Q,S);
-                        if (DPP==NULL) {
-                            insertLast(R,I);
-                        }
-                    }
-                }
+                Q=next(Q);
             }
+    cout<<endl;
 }
 
-void caribuku (List_parent P,List_child C, List_relasi R) {
-            cout<<"Judul Buku yang dicari : ";
-            cin>>Y;
-            printParent(R,Y);
+void listbygenre (List_parent W,List_child C,List_relasi R){
+    address_child P=first(C);
+    int i;
+    while (P!=NULL) {
+        cout<<"==========================="<<endl;
+        cout<<"Genre "<<info(P).Genre<<" : "<<endl;
+        address_relasi Q=first(R);
+        i=0;
+        while (Q!=NULL) {
+
+            if (P==child(Q)) {
+                i++;
+                cout<<i<<". "<<info(parent(Q)).JudulBuku<<endl;
+            }
+            Q=next(Q);
+        }
+        cout<<endl;
+        cout<<"Banyak Buku di Genre "<<info(P).Genre<<" : "<<i<<" Buah"<<endl;
+        cout<<endl;
+        P=next(P);
+    }
 }

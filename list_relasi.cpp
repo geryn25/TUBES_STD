@@ -22,8 +22,8 @@ address_relasi dealokasi_relasi(address_relasi &P){
 void printInfo(List_relasi L) {
     address_relasi P = first(L);
     while(P !=NULL) {
-        cout<<"Judul Buku   : "<<info(parent(P))<<endl
-            <<"Genre Buku   : "<<info(child(P))<<endl;
+        cout<<"Judul Buku   : "<<info(parent(P)).JudulBuku<<endl
+            <<"Genre Buku   : "<<info(child(P)).Genre<<endl;
         cout<<endl;
         P = next(P);
     }
