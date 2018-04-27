@@ -61,6 +61,8 @@ void displayMenu () {
     cout<<"12.Lihat Semua Buku Berdasarkan Genre"<<endl;
     cout<<"13.Check Konensi Buku dan Genre"<<endl;
     cout<<"14.Lihat Semua Buku (child for each Parent)"<<endl;
+    cout<<"15. Rata - Rata banyak Genre Per Buku"<<endl;
+    cout<<"16. Genre Terbanyak di Semua Buku"<<endl;
     cout<<"=========================="<<endl;
     cout<<"0.Exit"<<endl;
     cout<<"=========================="<<endl;
@@ -70,7 +72,8 @@ void displayMenu () {
 
 void runMenu (int menu) {
     system("CLS");
-    int i;
+    int i,v;
+    address_child M;
     switch (menu) {
         case 1 :
             cout<<" Menu Input Data Buku "<<endl;
@@ -130,7 +133,7 @@ void runMenu (int menu) {
         case 12 :
             cout<< " Menu List Semua Buku Berdasarkan Genre "<<endl;
             cout<<endl;
-            listbygenre(P,C,R);
+            listbygenre(P,C,R,M,v);
             break;
         case 13 :
             cout<< " Check Relasi "<<endl;
@@ -141,6 +144,9 @@ void runMenu (int menu) {
             break;
         case 15 :
             hitungrata2buku(C,P,R);
+            break;
+        case 16 :
+            genreterbanyak(R,C,P);
             break;
         default :
             break;

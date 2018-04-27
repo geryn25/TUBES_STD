@@ -277,9 +277,10 @@ void caribuku2 (List_parent P,List_child C, List_relasi R) {
     cout<<endl;
 }
 
-void listbygenre (List_parent W,List_child C,List_relasi R){
+void listbygenre (List_parent W,List_child C,List_relasi R,address_child &Z, int &v){
     address_child P=first(C);
     int i;
+    v=0;
     while (P!=NULL) {
         cout<<"==========================="<<endl;
         cout<<"Genre "<<info(P).Genre<<" : "<<endl;
@@ -292,6 +293,10 @@ void listbygenre (List_parent W,List_child C,List_relasi R){
                 cout<<i<<". "<<info(parent(Q)).JudulBuku<<endl;
             }
             Q=next(Q);
+        }
+        if (v<i) {
+            v=i;
+            Z=P;
         }
         cout<<endl;
         cout<<"Banyak Buku di Genre "<<info(P).Genre<<" : "<<i<<" Buah"<<endl;
@@ -351,9 +356,17 @@ void hitungrata2buku (List_child C, List_parent P, List_relasi R) {
     listbybuku(P,C,R,v);
     system("CLS");
     int Q=v/i;
-    cout<<" rata-rata genre per buku adalah : 1 berbanding "<<Q<<endl;
+    cout<<" rata-rata genre per buku adalah  1 berbanding "<<Q<<endl;
 
 
     v=0;
 
+}
+
+void genreterbanyak(List_relasi R, List_child C,List_parent P) {
+    int i;
+    address_child B;
+    listbygenre(P,C,R,B,i);
+    system("CLS");
+    cout<<" Genre "<<info(B).Genre<<" merupakan Genre terbanyak terdapat di semua buku yaitu sebanyak "<<i<<" buah buku"<<endl;
 }
