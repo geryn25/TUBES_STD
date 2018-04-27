@@ -20,9 +20,12 @@ using namespace std;
     List_relasi R;
 void displayMenu();
 void runMenu(int menu);
+void greet();
 int main()
 {
     system("color 3f");
+    greet();
+    system("CLS");
     int menu=-1;
     while (menu!=0) {
         displayMenu();
@@ -149,6 +152,16 @@ void runMenu (int menu) {
             genreterbanyak(R,C,P);
             break;
         default :
+            cout<<"Pilihan Salah!! <ULANGI>"<<endl;
             break;
     }
+}
+
+void greet (){
+    cout<<"    Selamat datang di aplikasi  Perpustakaan Buku"<<endl;
+    cout<<"    Aplikasi ini memuat data Buku dan dihubungkan dengan genre Buku"<<endl;
+    cout<<"    Setiap data buku bisa memiliki banyak genre dan setiap genre akan memiliki banyak data buku"<<endl<<endl;
+    cout<<"    Create by : Gery Nugroho and Rayhan A."<<endl<<endl;
+    cout<<"    Tekan <ENTER> untuk masuk ke Menu Utama";
+    cin.get();
 }
