@@ -10,7 +10,10 @@ using namespace std;
 #define first(L) L.first
 #define info(P) P->info
 
-typedef string infotype_child;
+struct infotype_child{
+    int ID;
+    string Genre;
+};
 typedef struct elmlist_child *address_child;
 
 struct elmlist_child{
@@ -26,16 +29,17 @@ struct List_child{
 void createList_child(List_child &L);
 void insertFirst(List_child &L, address_child P);
 void insertLast(List_child &L, address_child P);
-void insertAfter(address_child Prec, address_child P);
+void insertAfter(List_child &L,address_child Prec, address_child P);
 void deleteFirst(List_child &L, address_child &P);
 void deleteLast(List_child &L, address_child &P);
-void deleteAfter(address_child Prec, address_child &P);
+void deleteAfter(List_child &L,address_child Prec, address_child &P);
 
 
 /** PERLU MODIFIKASI */
 address_child alokasi(infotype_child x);
 void dealokasi(address_child &P);
 address_child findElm(List_child L, infotype_child x);
+address_child findElmName(List_child L, infotype_child x);
 void printInfo(List_child L);
 
 

@@ -23,16 +23,27 @@ void insertFirst(List_child &L, address_child P) {
 void printInfo(List_child L) {
     address_child P = first(L);
     while(P !=NULL) {
-        cout<<"->"<<info(P)<<endl;
+        cout<<"ID genre  :"<<info(P).ID<<endl;
+        cout<<"Genre     :"<<info(P).Genre<<endl;
         P = next(P);
     }
 }
 
 
+address_child findElmName(List_child L, infotype_child x) {
+    address_child P = first(L);
+    while(P != NULL) {
+        if(info(P).Genre==x.Genre) {
+            return P;
+        }
+        P = next(P);
+    }
+    return NULL;
+}
 address_child findElm(List_child L, infotype_child x) {
     address_child P = first(L);
     while(P != NULL) {
-        if(info(P)==x) {
+        if(info(P).ID==x.ID) {
             return P;
         }
         P = next(P);
@@ -40,7 +51,7 @@ address_child findElm(List_child L, infotype_child x) {
     return NULL;
 }
 
-void insertAfter(address_child &Prec, address_child P) {
+void insertAfter(List_child &L,address_child &Prec, address_child P) {
     if (Prec!=NULL) {
         next(P)=next(Prec);
         next(Prec)=P;
@@ -70,7 +81,7 @@ void deleteLast(List_child &L, address_child &P) {
     next(Q)=NULL;
 }
 
-void deleteFirst(List_child &L, address_child P) {
+void deleteFirst(List_child &L, address_child &P) {
     if (first(L)!=NULL) {
         P=first(L);
         first(L)=next(P);
@@ -78,7 +89,7 @@ void deleteFirst(List_child &L, address_child P) {
     }
 }
 
-void deleteAfter(address_child Prec, address_child &P) {
+void deleteAfter(List_child &L,address_child Prec, address_child &P) {
     if (Prec!=NULL) {
         P=next(Prec);
         next(Prec)=next(P);
@@ -86,3 +97,6 @@ void deleteAfter(address_child Prec, address_child &P) {
     }
 }
 
+void dealokasi(address_child &P) {
+    delete P;
+}
