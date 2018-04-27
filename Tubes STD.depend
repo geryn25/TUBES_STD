@@ -74,7 +74,7 @@
 	"list_parent.h"
 	<iostream>
 
-1524790635 source:c:\users\gery\documents\github\tubes_std\main.cpp
+1524791357 source:c:\users\gery\documents\github\tubes_std\main.cpp
 	<iostream>
 	<stdio.h>
 	<string.h>
@@ -86,7 +86,7 @@
 	"function.h"
 	<conio.h>
 
-1524790648 source:c:\users\gery\documents\github\tubes_std\function.cpp
+1524791333 source:c:\users\gery\documents\github\tubes_std\function.cpp
 	<iostream>
 	<stdio.h>
 	<string.h>
@@ -98,7 +98,7 @@
 	"list_parent.h"
 	<conio.h>
 
-1524790597 c:\users\gery\documents\github\tubes_std\function.h
+1524791075 c:\users\gery\documents\github\tubes_std\function.h
 	"list_relasi.h"
 	"list_child.h"
 	"list_parent.h"

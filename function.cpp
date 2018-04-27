@@ -110,7 +110,7 @@ void deleteGenre (List_child &P, List_relasi &R) {
     infotype_child x;
     address_child A,B;
     address_relasi Z,S;
-    cout<<"ID buku yang dihapus : ";
+    cout<<"Genre Buku yang dihapus : ";
     cin.ignore();
     getline(cin,x.Genre);
     address_child Q=findElmName(P,x);
