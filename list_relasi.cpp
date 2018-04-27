@@ -83,7 +83,25 @@ address_relasi findElm(List_relasi L, address_parent P, address_child C) {
 
 
 void dealokasi(address_relasi &P) {
-    parent(P)=NULL;
-    child(P)=NULL;
-    next(P)=NULL;
+    delete P;
+}
+
+void DeleteR (List_relasi &L, address_relasi &P) {
+    if(first(L) != NULL){
+        if(P == first(L) && next(first(L))==NULL){
+            deleteFirst(L,P);
+        } else {
+            if (P==first(L)) {
+                first(L)=next(first(L));
+            }
+            address_relasi Q = first(L);
+            while(next(Q) != NULL){
+                if(next(Q) == P){
+                    next(Q) = next(P);
+                    break;
+                }
+                Q = next(Q);
+            }
+        }
+    }
 }

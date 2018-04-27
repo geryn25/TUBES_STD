@@ -70,36 +70,20 @@ void deleteBuku (List_parent &P, List_relasi &R) {
     getline(cin,x.JudulBuku);
     address_parent Q=findElmName(P,x);
     if (Q!=NULL) {
-            address_relasi W=first(R);
-            while (W!=NULL && info(parent(W)).JudulBuku!=info(Q).JudulBuku) {
-                W=next(W);
-            }
-            if (W==NULL) {
-                deleteAfter(P,prev(Q),A);
-                dealokasi(A);
-            } else {
-                W=first(R);
-
-                while (W!=NULL) {
-                    cout<<"YY";
-                    if (parent(first(R))==Q){
-                        deleteFirst(R,S);
-                        W=first(R);
-                        dealokasi(S);
-                    }
-                    else if (parent(next(W))==Q) {
-                        deleteAfter(R,W,S);
-                        dealokasi(S);
-                    }
-                    else {
-                        W=next(W);
-                    }
+            S=first(R);
+            while (S!=NULL) {
+                address_relasi tmp=NULL;
+                if (parent(S)==Q) {
+                    DeleteR(R,S);
+                    tmp=S;
                 }
-                deleteAfter(P,prev(Q),A);
-                dealokasi(A);
-
-
+                S=next(S);
+                if (tmp==NULL) {
+                    dealokasi(tmp);
+                }
             }
+            deleteAfter(P,prev(Q),A);
+            dealokasi(A);
     } else {
         cout<<"Buku tidak DITEMUKAN"<<endl;
     }
@@ -108,60 +92,35 @@ void deleteBuku (List_parent &P, List_relasi &R) {
 }
 void deleteGenre (List_child &P, List_relasi &R) {
     infotype_child x;
-    address_child A,B;
+    address_child A,B,D;
     address_relasi Z,S;
     cout<<"Genre Buku yang dihapus : ";
     cin.ignore();
     getline(cin,x.Genre);
     address_child Q=findElmName(P,x);
     if (Q!=NULL) {
-            address_relasi W=first(R);
-            while (W!=NULL && info(child(W)).Genre!=info(Q).Genre) {
-                W=next(W);
-            }
-            if (W==NULL) {
-                address_child S=first(P);
-                if (Q=first(P)) {
-                    deleteFirst(P,B);
-                    dealokasi(B);
-                }else {
-                    while (next(S)!=Q) {
-                        S=next(S);
-                    }
-                    deleteAfter(P,S,B);
-                    dealokasi(B);
+            S=first(R);
+            while (S!=NULL) {
+                address_relasi tmp=NULL;
+                if (child(S)==Q) {
+                    DeleteR(R,S);
+                    tmp=S;
                 }
+                S=next(S);
+                if (tmp==NULL) {
+                    dealokasi(tmp);
+                }
+            }
+            B=first(P);
+            if (first(P)==Q) {
+                deleteFirst(P,A);
             } else {
-                Z=first(R);
-                while (Z!=NULL) {
-                    if (child(first(R))==Q){
-                        deleteFirst(R,S);
-                        Z=first(R);
-                        dealokasi(S);
-                    }
-                    else if (child(next(Z))==Q) {
-                        deleteAfter(R,Z,S);
-                        dealokasi(S);
-                    }
-                    else {
-                        Z=next(Z);
-                    }
+                while (next(B)!=Q) {
+                    B=next(B);
                 }
-                address_child S=first(P);
-                if (Q=first(P)) {
-                    deleteFirst(P,B);
-                    dealokasi(B);
-                }else {
-                    while (next(S)!=Q) {
-                        S=next(S);
-                    }
-                    deleteAfter(P,S,B);
-                    dealokasi(B);
-                }
-
+                deleteAfter(P,B,A);
+                dealokasi(A);
             }
-
-
     } else {
         cout<<"Genre tidak DITEMUKAN"<<endl;
     }
@@ -281,48 +240,52 @@ void listbygenre (List_parent W,List_child C,List_relasi R,address_child &Z, int
     address_child P=first(C);
     int i;
     v=0;
-    while (P!=NULL) {
-        cout<<"==========================="<<endl;
-        cout<<"Genre "<<info(P).Genre<<" : "<<endl;
-        address_relasi Q=first(R);
-        i=0;
-        while (Q!=NULL) {
+    if (P!=NULL) {
+        while (P!=NULL) {
+            cout<<"==========================="<<endl;
+            cout<<"Genre "<<info(P).Genre<<" : "<<endl;
+            address_relasi Q=first(R);
+            i=0;
+            while (Q!=NULL) {
 
-            if (P==child(Q)) {
-                i++;
-                cout<<i<<". "<<info(parent(Q)).JudulBuku<<endl;
+                if (P==child(Q)) {
+                    i++;
+                    cout<<i<<". "<<info(parent(Q)).JudulBuku<<endl;
+                }
+                Q=next(Q);
             }
-            Q=next(Q);
+            if (v<i) {
+                v=i;
+                Z=P;
+            }
+            cout<<endl;
+            cout<<"Banyak Buku di Genre "<<info(P).Genre<<" : "<<i<<" Buah"<<endl;
+            cout<<endl;
+            P=next(P);
         }
-        if (v<i) {
-            v=i;
-            Z=P;
-        }
-        cout<<endl;
-        cout<<"Banyak Buku di Genre "<<info(P).Genre<<" : "<<i<<" Buah"<<endl;
-        cout<<endl;
-        P=next(P);
     }
 }
 void listbybuku (List_parent W,List_child C,List_relasi R,int &i){
     address_parent P=first(W);
     i=0;
-    do {
-        cout<<"==========================="<<endl;
-        cout<<"Judul Buku : "<<info(P).JudulBuku<<endl;
-        address_relasi Q=first(R);
-        cout<<"Genre Buku : ";
-        while (Q!=NULL) {
-            if (P==parent(Q)) {
-                cout<<info(child(Q)).Genre<<", ";
-                i++;
+    if (P!=NULL) {
+        do {
+            cout<<"==========================="<<endl;
+            cout<<"Judul Buku : "<<info(P).JudulBuku<<endl;
+            address_relasi Q=first(R);
+            cout<<"Genre Buku : ";
+            while (Q!=NULL) {
+                if (P==parent(Q)) {
+                    cout<<info(child(Q)).Genre<<", ";
+                    i++;
+                }
+                Q=next(Q);
             }
-            Q=next(Q);
-        }
-        cout<<endl;
-        cout<<endl;
-        P=next(P);
-    } while (P!=first(W));
+            cout<<endl;
+            cout<<endl;
+            P=next(P);
+        } while (P!=first(W));
+    }
 }
 
 void checkRelation (List_child C, List_parent P, List_relasi R) {
@@ -349,24 +312,28 @@ void hitungrata2buku (List_child C, List_parent P, List_relasi R) {
     int i,v;
     address_parent W=first(P);
     i=0;
-    do {
-        i++;
-        W=next(W);
-    } while(W!=first(P));
-    listbybuku(P,C,R,v);
-    system("CLS");
-    int Q=v/i;
-    cout<<" rata-rata genre per buku adalah  1 berbanding "<<Q<<endl;
+    if (W!=NULL) {
+        do {
+            i++;
+            W=next(W);
+        } while(W!=first(P));
+        listbybuku(P,C,R,v);
+        system("CLS");
+        int Q=v/i;
+        cout<<" rata-rata genre per buku adalah  1 berbanding "<<Q<<endl;
 
 
-    v=0;
+        v=0;
+    }
 
 }
 
 void genreterbanyak(List_relasi R, List_child C,List_parent P) {
     int i;
-    address_child B;
-    listbygenre(P,C,R,B,i);
-    system("CLS");
-    cout<<" Genre "<<info(B).Genre<<" merupakan Genre terbanyak terdapat di semua buku yaitu sebanyak "<<i<<" buah buku"<<endl;
+    if (first(R)!=NULL) {
+        address_child B;
+        listbygenre(P,C,R,B,i);
+        system("CLS");
+        cout<<" Genre "<<info(B).Genre<<" merupakan Genre terbanyak terdapat di semua buku yaitu sebanyak "<<i<<" buah buku"<<endl;
+    }
 }

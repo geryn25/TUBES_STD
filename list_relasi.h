@@ -35,6 +35,7 @@ void deleteLast(List_relasi &L, address_relasi &P);
 void deleteAfter(List_relasi &L,address_relasi Prec, address_relasi &P);
 void printgenre(List_relasi L);
 address_relasi findBefore (List_relasi L, address_relasi x);
+void DeleteR (List_relasi &L, address_relasi &P);
 
 
 
