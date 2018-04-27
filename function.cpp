@@ -299,6 +299,26 @@ void listbygenre (List_parent W,List_child C,List_relasi R){
         P=next(P);
     }
 }
+void listbybuku (List_parent W,List_child C,List_relasi R,int &i){
+    address_parent P=first(W);
+    i=0;
+    do {
+        cout<<"==========================="<<endl;
+        cout<<"Judul Buku : "<<info(P).JudulBuku<<endl;
+        address_relasi Q=first(R);
+        cout<<"Genre Buku : ";
+        while (Q!=NULL) {
+            if (P==parent(Q)) {
+                cout<<info(child(Q)).Genre<<", ";
+                i++;
+            }
+            Q=next(Q);
+        }
+        cout<<endl;
+        cout<<endl;
+        P=next(P);
+    } while (P!=first(W));
+}
 
 void checkRelation (List_child C, List_parent P, List_relasi R) {
     infotype_parent Y;
@@ -318,4 +338,22 @@ void checkRelation (List_child C, List_parent P, List_relasi R) {
     } else {
         cout<<"terhubung"<<endl;
     }
+}
+
+void hitungrata2buku (List_child C, List_parent P, List_relasi R) {
+    int i,v;
+    address_parent W=first(P);
+    i=0;
+    do {
+        i++;
+        W=next(W);
+    } while(W!=first(P));
+    listbybuku(P,C,R,v);
+    system("CLS");
+    int Q=v/i;
+    cout<<" rata-rata genre per buku adalah : 1 berbanding "<<Q<<endl;
+
+
+    v=0;
+
 }

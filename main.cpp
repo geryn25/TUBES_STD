@@ -60,6 +60,7 @@ void displayMenu () {
     cout<<"11.Cari Buku by Genre"<<endl;
     cout<<"12.Lihat Semua Buku Berdasarkan Genre"<<endl;
     cout<<"13.Check Konensi Buku dan Genre"<<endl;
+    cout<<"14.Lihat Semua Buku (child for each Parent)"<<endl;
     cout<<"=========================="<<endl;
     cout<<"0.Exit"<<endl;
     cout<<"=========================="<<endl;
@@ -69,6 +70,7 @@ void displayMenu () {
 
 void runMenu (int menu) {
     system("CLS");
+    int i;
     switch (menu) {
         case 1 :
             cout<<" Menu Input Data Buku "<<endl;
@@ -134,6 +136,12 @@ void runMenu (int menu) {
             cout<< " Check Relasi "<<endl;
             cout<<endl;
             checkRelation(C,P,R);
+        case 14 :
+            listbybuku(P,C,R,i);
+            break;
+        case 15 :
+            hitungrata2buku(C,P,R);
+            break;
         default :
             break;
     }

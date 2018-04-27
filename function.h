@@ -17,7 +17,10 @@ void caribuku2 (List_parent P,List_child C, List_relasi R);
 void tambahRelasi (List_relasi &R, List_child &C,List_parent &P);
 void deleteRelasi(List_parent P,List_child C,List_relasi &R);
 void listbygenre (List_parent W,List_child C,List_relasi R);
+void listbybuku (List_parent W,List_child C,List_relasi R,int &i);
 void checkRelation (List_child C, List_parent P, List_relasi R);
+void hitungrata2buku (List_child C, List_parent P, List_relasi R);
+
 
 
 
